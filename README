@@ -1,0 +1,22 @@
+README.md  	
+Run_analysis.R  contains the main routine run_analysis and function read_dataset. 
+
+Run_analysis
+
+Sets the working directory (using the full path) and loads the data.table library (available from CRAN).  
+The filenames are passed as strings to avoid making a-priori assumptions about filenames and directory structure thus allowing greater flexibility.  
+In this case the strings for the subdirectory name, and filenames for the raw data, label data and subject information are provided as string for both the test and training data.  
+The feature names, and activity labels are read and the only those features with the text mean or std are selected.  
+This subset of features is passed to the read_dataset , along with the string of filesnames and labels which reads and “assembles” the selected data set.  
+Both the training and test data sets are read and merged together by row prior to the tidying (cleaning up) of the column labels/variables names for readability and saving as a CSV file.
+
+Read_dataset
+
+Receives 3 arguments consist of (a) a list of strings specifying the subdirectory and the data file, label file and subject information file, (b) a list of features to be selected (as strings) and (c) a list of activity names.  
+A leader/header is created so that the full path can be used in the read.table calls.  
+Three files are read in succession.  
+The data file is read first, selecting only those features in the list of features (in this case those with mean and std in the name).  
+The row label  and  subject identifier files are both read and “appended” as columns to the data frame.  
+The last step is transforming the data frame into a data table before returning. 
+
+
